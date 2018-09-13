@@ -39,28 +39,11 @@
             underscore[i] = userGuess; //puts userGuess letter in the array Index of underscore if it matches
             document.getElementById("underscore").innerHTML= underscore.join("") ; 
             }
-        else {
-
-        }
         }
     return;
     }
    
-   
-    //start gave over if it reaches x amount of guesses
-    function reset(){
-        if (guessesLeft < 1){
-            
-            guessesLeft = 15;
-            guessedLetters = [];
 
-            document.getElementById("lose").innerHTML= lose ;
-            document.getElementById("guessesLeft").innerHTML= guessesLeft ;
-            document.getElementById("guessedLetters").innerHTML= guessedLetters ;
-            document.getElementById("underscore").innerHTML= underscore.join("") ;
-
-        }
-    }
     
     document.onkeyup = function(event) { //function to execute for each key Press
         var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -73,7 +56,7 @@
             alert("Game Over! The word was " + chosenWord.toUpperCase());
             lose++;
             guessesLeft = 15;
-            guessedLetters=[];
+            guessedLetters = [];
             document.getElementById("lose").innerHTML = lose;
             document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
             document.getElementById("guessesLeft").innerHTML = guessesLeft;
@@ -84,16 +67,22 @@
             alert("You're a winner Baby! The word was " + chosenWord.toUpperCase());
             win++;
             guessesLeft = 15;
-            guessedLetters=[];
+            guessedLetters = [];
+            underscore = [];
+            console.log("underscore" + underscore);
+            console.log("guessedLetters" +guessedLetters);
+            console.log("chosenWord" + chosenWord);
+            var newWord= list[Math.floor(Math.random()*list.length)];
+            underscore = [];
+            for (var i = 0; i < newWord.length; i++ ){
+                underscore[i]= "_ "; //keeps adding underscore to the amount of letters fruit
+            }
+            console.log("NEWWORD" + newWord);
+            document.getElementById("underscore").innerHTML= underscore.join("") ;
             document.getElementById("win").innerHTML= win;
             document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
             document.getElementById("guessesLeft").innerHTML = guessesLeft;
         }
-        reset();
-
-       
-
-
         
     }
 
