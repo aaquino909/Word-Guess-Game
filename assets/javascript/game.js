@@ -4,7 +4,7 @@
     //declare and initialize variables
     var win = 0;
     var lose = 0;
-    var guessesLeft = 9; //total of guesses a user can have
+    var guessesLeft = 15; //total of guesses a user can have
     var list = ["orange", "apple", "pineapple", "peach", "strawberry", "pear", "grape", "avocado","mango","blueberry", "cherry"]; 
     var guessedLetters = []; //array push user's guesses
     
@@ -12,8 +12,8 @@
     var randomIndex = Math.floor(Math.random()*11);
     var chosenWord = list[randomIndex]; //random index inside list assigned to chosenWord
     var wordLength = chosenWord.length; // amount of letters in word
-    console.log(chosenWord);
-    console.log(wordLength);
+    // console.log(chosenWord);
+    // console.log(wordLength);
     var underscore= []; //empty string for underscore
     
     
@@ -26,14 +26,6 @@
     }
     start(); //starts function
     
-    function winner(){
-        if (underscore.join("") === chosenWord){
-            document.getElementById("win").innerHTML= win;
-            alert("You're a winner Baby! the word was " + chosenWord);
-            location.reload();
-            win++
-                }
-    }
 
 
     //Function to match users guessed letter to each index of array
@@ -48,6 +40,7 @@
             document.getElementById("underscore").innerHTML= underscore.join("") ; 
             }
         else {
+
         }
         }
     return;
@@ -57,14 +50,14 @@
     //start gave over if it reaches x amount of guesses
     function reset(){
         if (guessesLeft < 1){
-            lose++;
-            guessesLeft = 9;
+            
+            guessesLeft = 15;
             guessedLetters = [];
 
             document.getElementById("lose").innerHTML= lose ;
             document.getElementById("guessesLeft").innerHTML= guessesLeft ;
             document.getElementById("guessedLetters").innerHTML= guessedLetters ;
-            document.getElementById("underscore").innerHTML= underscore ;
+            document.getElementById("underscore").innerHTML= underscore.join("") ;
 
         }
     }
@@ -72,16 +65,34 @@
     document.onkeyup = function(event) { //function to execute for each key Press
         var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
         guessedLetters.push(userGuess); //adds ever letter pushed to guessedLetters array
-        document.getElementById("guessedLetters").innerHTML= guessedLetters
+        document.getElementById("guessedLetters").innerHTML= guessedLetters.join("  "); 
         matchWithUsers();
         guessesLeft--;
         document.getElementById("guessesLeft").innerHTML= guessesLeft; 
         if (guessesLeft === 0) {
-            alert("Game Over!");
-            location.reload();
+            alert("Game Over! The word was " + chosenWord.toUpperCase());
+            lose++;
+            guessesLeft = 15;
+            guessedLetters=[];
+            document.getElementById("lose").innerHTML = lose;
+            document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+
+            
         }
-        winner();
+        if (underscore.join("") === chosenWord){
+            alert("You're a winner Baby! The word was " + chosenWord.toUpperCase());
+            win++;
+            guessesLeft = 15;
+            guessedLetters=[];
+            document.getElementById("win").innerHTML= win;
+            document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;
+        }
         reset();
+
+       
+
 
         
     }
