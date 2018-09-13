@@ -11,15 +11,13 @@
     
     var randomIndex = Math.floor(Math.random()*11);
     var chosenWord = list[randomIndex]; //random index inside list assigned to chosenWord
-    var wordLength = chosenWord.length; // amount of letters in word
-    // console.log(chosenWord);
-    // console.log(wordLength);
+    console.log(chosenWord);
     var underscore= []; //empty string for underscore
     
     
     //STEP TWO: use a for loop to display amount of underscores using wordLength;
     function start(){ //function to start forloop and display underscore
-    for (var i = 0; i < wordLength; i++ ){
+    for (var i = 0; i < chosenWord.length; i++ ){
         underscore[i]= "_ "; //keeps adding underscore to the amount of letters fruit
     }
     document.getElementById("underscore").innerHTML= underscore.join("") ;
@@ -42,7 +40,7 @@
         }
     return;
     }
-   
+
 
     
     document.onkeyup = function(event) { //function to execute for each key Press
@@ -59,9 +57,7 @@
             guessedLetters = [];
             document.getElementById("lose").innerHTML = lose;
             document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
-            document.getElementById("guessesLeft").innerHTML = guessesLeft;
-
-            
+            document.getElementById("guessesLeft").innerHTML = guessesLeft;   
         }
         if (underscore.join("") === chosenWord){
             alert("You're a winner Baby! The word was " + chosenWord.toUpperCase());
@@ -69,20 +65,17 @@
             guessesLeft = 15;
             guessedLetters = [];
             underscore = [];
+            for (var i = 0; i < chosenWord.length; i++ ){
+                underscore[i]= "_ "; //keeps adding underscore to the amount of letters fruit
+            }
+            document.getElementById("underscore").innerHTML= underscore.join("") ;
+            
             console.log("underscore" + underscore);
             console.log("guessedLetters" +guessedLetters);
             console.log("chosenWord" + chosenWord);
-            var newWord= list[Math.floor(Math.random()*list.length)];
-            underscore = [];
-            for (var i = 0; i < newWord.length; i++ ){
-                underscore[i]= "_ "; //keeps adding underscore to the amount of letters fruit
-            }
-            console.log("NEWWORD" + newWord);
-            document.getElementById("underscore").innerHTML= underscore.join("") ;
             document.getElementById("win").innerHTML= win;
             document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
             document.getElementById("guessesLeft").innerHTML = guessesLeft;
         }
-        
     }
 
