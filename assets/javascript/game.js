@@ -62,9 +62,12 @@
             document.getElementById("guessedLetters").innerHTML = guessedLetters.join("  ");
             document.getElementById("guessesLeft").innerHTML = guessesLeft;
             // location.reload();
+
+            //pull a new word into the array 
+            //put it into chosen word
+            
         }
-        
-        
+
     }
 
 
